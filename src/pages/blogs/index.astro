@@ -1,0 +1,23 @@
+---
+import Card from "#/Card.astro";
+import Layout from "@/Layout.astro";
+import { getCollection } from "astro:content";
+const allBlogs = await getCollection("blogs");
+---
+
+<Layout title="">
+  <main class="grid grid-cols-2 p-10 gap-2">
+    {
+      allBlogs.map((blog) => {
+        return (
+          <Card
+            image={blog.data.image}
+            title={blog.data.title}
+            description={blog.data.description}
+            href={`./blogs/${blog.slug}`}
+          />
+        );
+      })
+    }
+  </main>
+</Layout>
