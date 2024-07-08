@@ -1,35 +1,41 @@
 ---
-import Header from "#/header.astro";
-import ViewTransitions from "astro/components/ViewTransitions.astro";
-
+import NavBar from "@/NavBar.astro";
 interface Props {
-  title: string;
+	title: string;
 }
 
+import {ViewTransitions} from 'astro:transitions'
 const { title } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
-      rel="stylesheet"
-    />
-    <meta name="description" content="Astro description" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="icon" href="/favicon.ico" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
-    <ViewTransitions />
-  </head>
-  <body class="bg-white inter min-h-screen flex flex-col" transition:persist>
-    <Header />
-    <div class="w-full mx-auto max-w-[900px]">
-      <slot />
-    </div>
-  </body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<ViewTransitions/>
+	</head>
+	<body transition:persist>
+		<NavBar />
+		<main class="w-full inline-flex *:mx-auto *:w-full *:px-2 *:pt-8 *:max-w-[900px]">
+			<h1>{title}</h1>
+			<slot />
+		</main>
+	</body>
 </html>
+<style is:global>
+	@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
+
+	:root {
+		font-family: "Nunito Sans", sans-serif;
+		@apply tracking-wide;
+	}
+
+	header {
+		font-family: "Raleway", sans-serif;
+	}
+</style>
