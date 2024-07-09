@@ -75,7 +75,7 @@ const NavBar = ({
               setOpen(!open);
               toggleNav();
             }}
-            className="inline-flex menu gap-2 items-baseline text-xl menu transition-all duration-700 ease-in-out z-[100] justify-center"
+            className="inline-flex menu gap-2 items-baseline text-xl menu transition-all duration-700 ease-in-out z-[700] justify-center"
           >
             {!open ? <MdOutlineMenu /> : <MdOutlineClose />}
           </button>
@@ -86,13 +86,13 @@ const NavBar = ({
       <nav
         id="mobilenav"
         ref={mobnavRef}
-        className={`fixed text-xl p-2 flex-col items-center justify-center w-full h-full z-[1000] hidden`}
+        className={`fixed text-xl p-2 flex-col items-center justify-center w-full h-full z-[600] hidden`}
       >
         <div className="from-black/80 to-black/50 bg-gradient-to-tr w-full h-fit min-h-96 rounded-md px-8 py-4 flex justify-end flex-col">
           <form
             onSubmit={(e) => {
               e.preventDefault();
-               navigate(`/${inputRef.current?.value}`);
+              navigate(`/${inputRef.current?.value}`);
             }}
           >
             <input
