@@ -1,0 +1,79 @@
+---
+import { Icon } from "astro-icon/components";
+interface Props {
+  siteName: string;
+}
+const { siteName } = Astro.props;
+---
+
+
+<header class="w-full bg-blue-700 *:text-white inline-flex *:max-w-[900px]">
+  <div
+    class="mx-auto z-[100] bg-blue-700 inline-flex px-2 py-4 justify-between items-baseline w-full h-fit"
+  >
+    <h1>{siteName}</h1>
+    <div class="inline-flex justify-center items-center gap-2">
+      <nav class="hidden sm:inline-flex gap-2 items-baseline justify-center">
+        <slot />
+      </nav>
+      <button class="p-2 open bg-white rounded-full">
+        <Icon class="text-blue-700 rounded-full" name="mdi:magnify" />
+      </button>
+      <button
+        class="inline-flex menu sm:hidden gap-2 items-baseline justify-center"
+      >
+        <Icon
+          id={"openicon"}
+          class={"text-xl transition-all duration-700 ease-in-out z-[100] "}
+          name="mdi:menu"
+        />
+        <Icon
+          id={"closeicon"}
+          class={"text-xl hidden menu transition-all duration-700 ease-in-out z-[100] "}
+          name="mdi:close"
+        />
+      </button>
+
+      <dialog id="searchDialog">
+        <div
+          class="flex flex-col gap-2 w-full h-fit max-w-[600px] min-w-[300px] select-none border border-blue-700 rounded-md p-4"
+        >
+          <h4>Enter Your Query</h4>
+          <input
+            type="text"
+            autofocus
+            class="foucus:outline outline-blue-700 bg-transparent rounded-sm px-4 py-2 foucus:ring-0 ring-1 ring-blue-700"
+          />
+          <button
+            class="px-4 close py-2 bg-blue-700 text-white rounded"
+            type="submit">Search</button
+          >
+        </div>
+      </dialog>
+    </div>
+  </div>
+  <nav
+    id="mobilenav"
+    class="absolute pt-16 gap-4 text-xl backdrop-blur-lg p-4 flex flex-col bg-blue-700 sm:hidden items-center justify-start transition-all duration-500 ease-in-out -top-full left-0 w-full h-fit"
+  >
+    <slot />
+  </nav>
+
+  
+</header>
+
+
+<style>
+    header {
+      h1 {
+        @apply text-2xl font-bold;
+      }
+      h2 {
+        @apply text-lg;
+      }
+    }
+
+    a {
+      @apply hover:underline underline-offset-2;
+    }
+  </style>

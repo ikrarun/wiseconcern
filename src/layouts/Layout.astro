@@ -1,41 +1,56 @@
 ---
-import NavBar from "@/NavBar.astro";
+import NavBar from "@/NavBar";
 interface Props {
-	title: string;
+  title: string;
 }
 
-import {ViewTransitions} from 'astro:transitions'
+import { ViewTransitions } from "astro:transitions";
 const { title } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-		<ViewTransitions/>
-	</head>
-	<body transition:persist>
-		<NavBar />
-		<main class="w-full inline-flex *:mx-auto *:w-full *:px-2 *:pt-8 *:max-w-[900px]">
-			<h1>{title}</h1>
-			<slot />
-		</main>
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <ViewTransitions />
+  </head>
+  <body class="flex flex-col relative" transition:persist>
+    <NavBar siteName="Wise Concern" client:load>
+      <a href="./">Education</a>
+      <a href="./">Life</a>
+      <a href="./tech">Tech</a>
+    </NavBar>
+    <main
+      class="w-full inline-flex *:mx-auto *:w-full *:px-2 *:pt-8 *:max-w-[900px]"
+    >
+      <h1>{title}</h1>
+      <slot />
+    </main>
+    <style is:global>
+      @import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
+
+      :root {
+        font-family: "Nunito Sans", sans-serif;
+        @apply tracking-wide min-w-[500px];
+      }
+
+      header {
+        font-family: "Raleway", sans-serif;
+        h1 {
+          @apply text-2xl font-semibold;
+        }
+        h2 {
+          @apply text-lg font-normal;
+        }
+        a {
+          @apply hover:underline underline-offset-2 font-medium;
+        }
+      }
+    </style>
+  </body>
 </html>
-<style is:global>
-	@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
-
-	:root {
-		font-family: "Nunito Sans", sans-serif;
-		@apply tracking-wide;
-	}
-
-	header {
-		font-family: "Raleway", sans-serif;
-	}
-</style>
