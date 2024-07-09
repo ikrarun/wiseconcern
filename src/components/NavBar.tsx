@@ -85,6 +85,7 @@ const NavBar = ({
               type="text"
               name="s"
               id="search"
+              autoComplete="off"
               ref={inputRef}
               className="bg-transparent px-4 py-2 rounded-full outline-none ring-0 focus:ring-2 border border-white my-4"
               placeholder="Search"
