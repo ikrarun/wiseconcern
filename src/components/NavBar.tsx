@@ -10,49 +10,32 @@ const NavBar = ({
   siteName: string;
 }) => {
   const [open, setOpen] = useState(false);
-
   const mobnavRef = useRef<HTMLElement>(null);
-
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const postionBottomNav = () => {
-    const width = window.innerWidth;
-    const remainingwidth = () => {
-      if (width > 900) {
-        const r = (width - 900) / 2;
-        return r;
-      } else {
-        return 0;
+  useEffect(() => {
+    const postionBottomNav = () => {
+      const width = window.innerWidth;
+      const remainingwidth = () => {
+        if (width > 900) {
+          const r = (width - 900) / 2;
+          return r;
+        } else {
+          return 0;
+        }
+      };
+      const rmw = remainingwidth() + "px";
+      if (mobnavRef.current) {
+        mobnavRef.current.style.right = rmw;
       }
     };
-    const rmw = remainingwidth() + "px";
-    if (mobnavRef.current) {
-      mobnavRef.current.style.right = rmw;
-    }
-  };
-
-  const toggleNav = () => {
-    if (open) {
-      mobnavRef.current?.classList.remove("flex");
-      mobnavRef.current?.classList.add("hidden");
-      inputRef.current?.blur();
-    } else {
-      mobnavRef.current?.classList.remove("hidden");
-      mobnavRef.current?.classList.add("flex");
-      inputRef.current?.focus();
-    }
-  };
-
-  useEffect(() => {
     postionBottomNav();
     const listener = () => {
       postionBottomNav();
     };
     const openNavigation = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        mobnavRef.current?.classList.toggle("hidden");
-        mobnavRef.current?.classList.toggle("flex");
-        inputRef.current?.focus();
+        setOpen((prevOpen) => !prevOpen); // Toggle the state of 'open'
       }
     };
 
@@ -60,8 +43,9 @@ const NavBar = ({
     window.addEventListener("resize", listener);
     return () => {
       window.removeEventListener("resize", listener);
+      window.removeEventListener("keyup", openNavigation);
     };
-  }, []);
+  }, [open]);
 
   return (
     <header className="w-full bg-blue-700 *:text-white inline-flex *:max-w-[900px]">
@@ -73,10 +57,9 @@ const NavBar = ({
           <button
             onClick={() => {
               setOpen(!open);
-              toggleNav();
             }}
             className="inline-flex menu gap-2 items-baseline text-xl menu transition-all duration-700 ease-in-out z-[1000] justify-center"
-          aria-label="Menu Button"
+            aria-label="Menu Button"
           >
             {!open ? <MdOutlineMenu /> : <MdOutlineClose />}
           </button>
@@ -87,7 +70,9 @@ const NavBar = ({
       <nav
         id="mobilenav"
         ref={mobnavRef}
-        className={`fixed text-xl p-2 flex-col items-center justify-center w-full h-full z-[600] hidden`}
+        className={`fixed text-xl p-2 flex-col items-center justify-center w-full h-full z-[600] ${
+          open ? "flex" : "hidden"
+        }`}
       >
         <div className="from-black/80 backdrop-blur-3xl to-black/50 bg-gradient-to-tr w-full h-fit min-h-96 rounded-md px-8 py-4 flex justify-end flex-col">
           <form
@@ -103,6 +88,7 @@ const NavBar = ({
               ref={inputRef}
               className="bg-transparent px-4 py-2 rounded-full outline-none ring-0 focus:ring-2 border border-white my-4"
               placeholder="Search"
+              autoFocus
             />
           </form>
           <h6 className="text-gray-400 px-2 text-sm my-2">Categories</h6>
