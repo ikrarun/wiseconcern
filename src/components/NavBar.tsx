@@ -76,6 +76,7 @@ const NavBar = ({
               toggleNav();
             }}
             className="inline-flex menu gap-2 items-baseline text-xl menu transition-all duration-700 ease-in-out z-[1000] justify-center"
+          aria-label="Menu Button"
           >
             {!open ? <MdOutlineMenu /> : <MdOutlineClose />}
           </button>
