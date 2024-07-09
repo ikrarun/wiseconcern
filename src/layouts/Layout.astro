@@ -5,7 +5,20 @@ interface Props {
 }
 
 import { ViewTransitions } from "astro:transitions";
+let qod = await fetch("https://type.fit/api/quotes").then(
+  async function (response) {
+    const data = await response.json();
+    await data.sort(() => Math.random() - 0.5);
+    return data[0];
+  }
+);
+
 const { title } = Astro.props;
+let index = qod.author.indexOf(",");
+if (index !== -1) {
+  qod.author = qod.author.substring(0, index); // Take substring from start to the first comma
+}
+export { qod };
 ---
 
 <!doctype html>
@@ -20,9 +33,9 @@ const { title } = Astro.props;
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-    rel="preload"
+      rel="preload"
       href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
-as="style"
+      as="style"
     />
     <meta name="theme-color" content="#1d4ed8" />
     <title>{title}</title>
@@ -39,6 +52,20 @@ as="style"
     >
       <slot />
     </main>
+    <footer class="w-full text-white bg-black flex justify-center flex-col">
+      <div class="max-w-[900px] w-full mx-auto flex gap-2 py-2 flex-col">
+        <h1 class="text-2xl font-semibold">{qod.text}</h1>
+        <h1 class="text-lg">
+          {qod.author}
+        </h1>
+        <ol class="my-4 text-xl flex flex-col gap-3 list-disc ml-8">
+          <li><a href=""> Data We Collect? </a></li>
+          <li><a href=""> Newsletter</a></li>
+          <li><a href="">Youtube</a></li>
+          
+        </ol>
+      </div>
+    </footer>
     <style is:global>
       :root {
         font-family: "Nunito Sans", sans-serif;
