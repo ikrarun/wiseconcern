@@ -65,7 +65,7 @@ const NavBar = ({
 
   return (
     <header className="w-full bg-blue-700 *:text-white inline-flex *:max-w-[900px]">
-      <div className="mx-auto z-[100] font-semibold bg-blue-700 inline-flex px-2 py-4 justify-between items-center w-full h-fit">
+      <div className="mx-auto font-semibold bg-blue-700 inline-flex px-2 py-4 justify-between items-center w-full h-fit">
         <a className="nav" href="./">
           <h1>{siteName}</h1>
         </a>
@@ -75,7 +75,7 @@ const NavBar = ({
               setOpen(!open);
               toggleNav();
             }}
-            className="inline-flex menu gap-2 items-baseline text-xl menu transition-all duration-700 ease-in-out z-[700] justify-center"
+            className="inline-flex menu gap-2 items-baseline text-xl menu transition-all duration-700 ease-in-out z-[1000] justify-center"
           >
             {!open ? <MdOutlineMenu /> : <MdOutlineClose />}
           </button>
