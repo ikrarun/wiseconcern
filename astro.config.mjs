@@ -8,9 +8,7 @@ import partytown from "@astrojs/partytown";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [icon(), tailwind(), react(), svelte(), partytown(), serviceWorker({
-    workbox: { inlineWorkboxRuntime: true }
-  })],
+  integrations: [icon(), tailwind(), react(), svelte(), partytown(), serviceWorker()],
   image: {
     domains: ['https://images.pexels.com/']
   }
