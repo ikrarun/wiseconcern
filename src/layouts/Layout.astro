@@ -19,7 +19,7 @@ const { title } = Astro.props;
     <title>{title}</title>
     <ViewTransitions />
   </head>
-  <body class="flex flex-col min-h-dvh" transition:persist>
+  <body class="flex flex-col min-h-lvh" transition:persist>
     <NavBar siteName="Wise Concern" client:only="react">
       <a class="link" href="./">Education</a>
       <a class="link" href="./">Life</a>

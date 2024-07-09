@@ -86,7 +86,7 @@ const NavBar = ({
       <nav
         id="mobilenav"
         ref={mobnavRef}
-        className={`fixed text-xl p-2 flex-col items-center justify-center w-full h-full hidden`}
+        className={`fixed text-xl p-2 flex-col items-center justify-center w-full h-full z-[1000] hidden`}
       >
         <div className="from-black/80 to-black/50 bg-gradient-to-tr w-full h-fit min-h-96 rounded-md px-8 py-4 flex justify-end flex-col">
           <form
