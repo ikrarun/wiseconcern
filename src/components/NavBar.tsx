@@ -1,5 +1,6 @@
-import { useState, useEffect, useRef } from "react";
-import { MdOutlineMenu, MdOutlineClose, MdOutlineSearch } from "react-icons/md";
+import { navigate } from "astro/virtual-modules/transitions-router.js";
+import { useState, useRef, useEffect } from "react";
+import { MdOutlineMenu, MdOutlineClose } from "react-icons/md";
 
 const NavBar = ({
   children,
@@ -9,102 +10,108 @@ const NavBar = ({
   siteName: string;
 }) => {
   const [open, setOpen] = useState(false);
-  const [dialogOpen, setDialogOpen] = useState(false);
-  const [text, setText] = useState("fffgfg");
+
+  const mobnavRef = useRef<HTMLElement>(null);
+
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const postionBottomNav = () => {
+    const width = window.innerWidth;
+    const remainingwidth = () => {
+      if (width > 900) {
+        const r = (width - 900) / 2;
+        return r;
+      } else {
+        return 0;
+      }
+    };
+    const rmw = remainingwidth() + "px";
+    if (mobnavRef.current) {
+      mobnavRef.current.style.right = rmw;
+    }
+  };
+
+  const toggleNav = () => {
+    if (open) {
+      mobnavRef.current?.classList.remove("flex");
+      mobnavRef.current?.classList.add("hidden");
+      inputRef.current?.blur();
+    } else {
+      mobnavRef.current?.classList.remove("hidden");
+      mobnavRef.current?.classList.add("flex");
+      inputRef.current?.focus();
+    }
+  };
+
   useEffect(() => {
-    const handleKeyPress = (e: any) => {
-      if (e.key === 'Tab') {
-          e.preventDefault();
-      }
-      if (e.key === "/") {
-        setDialogOpen(true);
-        return;
-      }
+    postionBottomNav();
+    const listener = () => {
+      postionBottomNav();
+    };
+    const openNavigation = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        setText("");
-        setDialogOpen(false);
-        return;
-      }
-      if (inputRef.current) {
-        inputRef.current.focus();
+        mobnavRef.current?.classList.toggle("hidden");
+        mobnavRef.current?.classList.toggle("flex");
+        inputRef.current?.focus();
       }
     };
 
-    window.addEventListener("keydown", handleKeyPress);
-
+    window.addEventListener("keyup", openNavigation);
+    window.addEventListener("resize", listener);
     return () => {
-      window.removeEventListener("keydown", handleKeyPress);
+      window.removeEventListener("resize", listener);
     };
   }, []);
 
   return (
     <header className="w-full bg-blue-700 *:text-white inline-flex *:max-w-[900px]">
       <div className="mx-auto z-[100] font-semibold bg-blue-700 inline-flex px-2 py-4 justify-between items-center w-full h-fit">
-        <a href="./">
+        <a className="nav" href="./">
           <h1>{siteName}</h1>
         </a>
         <div className="inline-flex justify-center items-center gap-2">
-          <nav className="hidden sm:inline-flex gap-2 items-baseline justify-center">
-            {children}
-          </nav>
-
-          {/* Search Option */}
-          <button
-            onClick={() => {
-              setDialogOpen(true);
-            }}
-            className="p-2 open bg-white rounded-full"
-          >
-            <MdOutlineSearch className="text-blue-700 rounded-full" />
-          </button>
-          {/* Moblie Nav */}
           <button
             onClick={() => {
               setOpen(!open);
+              toggleNav();
             }}
-            className="inline-flex menu sm:hidden gap-2 items-baseline text-xl menu transition-all duration-700 ease-in-out z-[100] justify-center"
+            className="inline-flex menu gap-2 items-baseline text-xl menu transition-all duration-700 ease-in-out z-[100] justify-center"
           >
             {!open ? <MdOutlineMenu /> : <MdOutlineClose />}
           </button>
-
-          {/* Dialog */}
-          <dialog id="searchDialog" open={dialogOpen}>
-            <div className="flex grow fixed top-0 left-0 h-full w-full mx-auto flex-col p-2 gap-2 w-fullselect-none bg-white/10 backdrop-blur-sm items-center justify-center ">
-              <form
-                className="flex border  max-w-[600px] min-w-[300px] w-full border-blue-700 rounded-md p-4 flex-col gap-3"
-                onSubmit={(e) => e.preventDefault()}
-              >
-                <h4 className="text-gray-700">Enter Your Query</h4>
-                <input
-                  type="text"
-                  value={text}
-                  onChange={(e) => {
-                    e.preventDefault();
-                    setText(e.target.value);
-                  }}
-                  ref={inputRef}
-                  className="focus:outline-2 outline-blue-700 bg-transparent rounded-sm px-4 py-2 foucus:ring-0 ring-1 ring-blue-700"
-                />
-                <button
-                  className="px-4 close py-2 bg-blue-700 text-white rounded"
-                  onClick={() => setDialogOpen(false)}
-                >
-                  Search
-                </button>
-              </form>
-            </div>
-          </dialog>
         </div>
       </div>
+
+      {/* Mobile Nav */}
       <nav
         id="mobilenav"
-        className={`absolute pt-16 gap-4 text-xl backdrop-blur-lg p-4 flex flex-col bg-blue-700 sm:hidden items-center justify-start transition-all duration-500 ease-in-out ${
-          open ? "-top-0" : "-top-full"
-        } left-0 w-full h-fit`}
+        ref={mobnavRef}
+        className={`fixed text-xl p-2 flex-col items-center justify-center w-full h-full hidden`}
       >
-        {children}
+        <div className="from-black/80 to-black/50 bg-gradient-to-tr w-full h-fit min-h-96 rounded-md px-8 py-4 flex justify-end flex-col">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+               navigate(`/${inputRef.current?.value}`);
+            }}
+          >
+            <input
+              type="text"
+              name="s"
+              id="search"
+              ref={inputRef}
+              className="bg-transparent px-4 py-2 rounded-full outline-none ring-0 focus:ring-2 border border-white my-4"
+              placeholder="Search"
+            />
+          </form>
+          <h6 className="text-gray-400 px-2 text-sm my-2">Categories</h6>
+          <div className="flex flex-col justify-center items-start gap-2 text-base w-fit">
+            {children}
+          </div>
+          <h5 className="text-gray-400 mt-2 text-sm px-2 font-mono">
+            Esc: Close
+          </h5>
+        </div>
       </nav>
     </header>
   );
