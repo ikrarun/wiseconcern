@@ -89,7 +89,7 @@ const NavBar = ({
         ref={mobnavRef}
         className={`fixed text-xl p-2 flex-col items-center justify-center w-full h-full z-[600] hidden`}
       >
-        <div className="from-black/80 to-black/50 bg-gradient-to-tr w-full h-fit min-h-96 rounded-md px-8 py-4 flex justify-end flex-col">
+        <div className="from-black/80 backdrop-blur-3xl to-black/50 bg-gradient-to-tr w-full h-fit min-h-96 rounded-md px-8 py-4 flex justify-end flex-col">
           <form
             onSubmit={(e) => {
               e.preventDefault();
