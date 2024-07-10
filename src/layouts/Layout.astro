@@ -25,7 +25,7 @@ const { title } = Astro.props;
   <body class="flex flex-col min-h-screen" transition:persist>
     <div class="flex flex-col">
       <div class="flex flex-col h-full min-h-screen">
-        <NavBar title="Wise Concern" />
+        <NavBar title="Wise Concern" client:load />
         <slot />
       </div>
       <div class="bg-black w-full h-fit flex flex-col text-white">
