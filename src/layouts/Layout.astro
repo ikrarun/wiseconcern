@@ -22,9 +22,9 @@ const { title } = Astro.props;
     <title>{title}</title>
     <ViewTransitions />
   </head>
-  <body class="flex flex-col min-h-dvh" transition:persist>
+  <body class="flex flex-col min-h-screen" transition:persist>
     <div class="flex flex-col">
-      <div class="flex flex-col h-full min-h-dvh">
+      <div class="flex flex-col h-full min-h-screen">
         <NavBar title="Wise Concern" />
         <slot />
       </div>
