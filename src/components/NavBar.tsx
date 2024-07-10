@@ -36,9 +36,9 @@ const NavBar = ({
     });
   });
   return (
-    <div className="w-full z-[500] ">
-      <div className="z-[500] p-2 inline-flex w-full justify-between bg-black/50 text-white">
-        <div className="inline-flex justify-between mx-auto w-full max-w-[900px]">
+    <div className="w-full fixed top-0 z-[500] ">
+      <div className="z-[500] py-4 inline-flex w-full justify-between bg-black/50 text-white">
+        <div className="inline-flex px-4 justify-between mx-auto w-full max-w-[900px]">
           <h1 className="text-2xl text-center">{title}</h1>
           <button className="text-2xl" onClick={toggle}>
             {searhOpen ? <RxCross2 /> : <IoMenu />}

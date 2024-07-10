@@ -5,26 +5,28 @@ interface Props {
   title: string;
   description: string;
 }
-const { imgLink,title,description } = Astro.props;
+const { imgLink, title, description } = Astro.props;
 ---
 
-   <div class="h-full grow flex flex-col justify-center w-full">
-      <div class="h-full flex px-8 flex-col justify-center grow my-auto z-20 text-white bg-black/40 w-full">
-        <div class="max-w-[900px] p-2 w-full mx-auto">
-          <h1 class="text-xl opacity-95 mb-4 font-medium">Featured</h1>
-          <h1 class="text-5xl my-2 font-semibold">
-            {title}
-          </h1>
-          <h1 class="text-xl opacity-80 font-normal">
-            {description}
-          </h1>
-        </div>
-      </div>
-      <Image
-        src={imgLink}
-        alt=""
-        width={1920}
-        height={1080}
-        class="h-full absolute inset-0 w-full grow z-0 object-cover"
-      />
+<div class="h-dvh grow flex flex-col justify-center w-full">
+  <div
+    class="flex px-8 h-dvh flex-col grow justify-center my-auto z-20 text-white bg-black/40 w-full"
+  >
+    <div class="max-w-[900px] p-2 w-full mx-auto">
+      <h1 class="text-xl opacity-95 mb-4 font-medium">Featured</h1>
+      <h1 class="text-5xl my-2 font-semibold">
+        {title}
+      </h1>
+      <h1 class="text-xl opacity-80 font-normal">
+        {description}
+      </h1>
     </div>
+  </div>
+  <Image
+    src={imgLink}
+    alt=""
+    width={1920}
+    height={1080}
+    class="h-screen absolute inset-0 w-full object-cover"
+  />
+</div>
