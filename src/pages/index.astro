@@ -1,17 +1,14 @@
 ---
-import Card from "@/Card.astro";
+import HeroSection from "@/HeroSection.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Wise Concern">
-  <main class="w-full gap-2 flex flex-col grow h-full">
-    <h1 class="text-2xl px-4 font-semibold">/ Featured</h1>
-    <Card
-      imgLink="https://images.pexels.com/photos/17238245/pexels-photo-17238245/free-photo-of-man-posing-in-shirt-on-grassland.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-    />
-    <h1 class="text-2xl mt-10 px-4 font-semibold">/ You may like..</h1>
-    <Card
-      imgLink="https://images.pexels.com/photos/25785552/pexels-photo-25785552/free-photo-of-cottages-in-the-forest-under-the-starry-night-sky.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+  <main class="h-full w-full grow flex flex-col">
+    <HeroSection
+      title="How to Reduce Screen time?"
+      description="How to Reduce Screen time? Some Description....."
+      imgLink="https://images.unsplash.com/photo-1669413442231-568f15cfd196?q=80&w=2091&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     />
   </main>
 </Layout>
