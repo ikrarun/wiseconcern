@@ -5,20 +5,8 @@ interface Props {
 }
 
 import { ViewTransitions } from "astro:transitions";
-let qod = await fetch("https://type.fit/api/quotes").then(
-  async function (response) {
-    const data = await response.json();
-    await data.sort(() => Math.random() - 0.5);
-    return data[0];
-  }
-);
 
 const { title } = Astro.props;
-let index = qod.author.indexOf(",");
-if (index !== -1) {
-  qod.author = qod.author.substring(0, index); // Take substring from start to the first comma
-}
-export { qod };
 ---
 
 <html lang="en">
@@ -29,56 +17,27 @@ export { qod };
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <link rel="manifest" href="./manifest.json" />
-   
+
     <meta name="theme-color" content="#1d4ed8" />
     <title>{title}</title>
     <ViewTransitions />
   </head>
   <body class="flex flex-col min-h-lvh" transition:persist>
-    <NavBar siteName="Wise Concern" client:only="react">
-      <a class="link" href="./">Education</a>
-      <a class="link" href="./">Life</a>
-      <a class="link" href="./tech">Tech</a>
-    </NavBar>
-    <main
-      class="w-full grow relative flex flex-col *:mx-auto *:w-full *:px-2 *:pt-8 mx-auto max-w-[900px]"
-    >
-      <slot />
-    </main>
-    <footer class="w-full text-white bg-black mt-4 flex justify-center flex-col">
-      <div class="max-w-[900px] w-full mx-auto flex gap-2 px-4 py-2 flex-col">
-        <h1 class="text-xl font-semibold">{qod.text}</h1>
-        <h1 class="text-lg">
-          {qod.author}
-        </h1>
-        <ol class="my-4 text-base flex flex-col gap-3 list-disc ml-8">
-          <li><a href=""> Data We Collect? </a></li>
-          <li><a href=""> Newsletter</a></li>
-          <li><a href="">Youtube</a></li>
+    <div class="flex flex-col">
+      <div class="flex flex-col h-full min-h-lvh">
+        <NavBar title="Wise Concern" />
+        <slot />
+      </div>
+      <div class="bg-black w-full h-fit flex flex-col text-white">
+        <ol
+          class="w-full text-base flex flex-col gap-2 py-4 max-w-[900px] list-disc p-2 mx-auto"
+        >
+          <h1 class="text-xl">Thank you.</h1>
+          <span class="w-full h-[0.01em] my-4 bg-white/60"></span>
+          <li class="ml-6">Newsletter</li>
+          <li class="ml-6">Youtube</li>
         </ol>
       </div>
-    </footer>
-    <style is:global>
-      @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
-      :root {
-        font-family: "Nunito Sans", sans-serif;
-      }
-
-      header {
-        font-family: "Raleway", sans-serif;
-        h1 {
-          @apply text-2xl font-semibold;
-        }
-        h2 {
-          @apply text-lg font-normal;
-        }
-        a {
-          @apply px-2 font-medium;
-        }
-        a.link {
-          @apply px-2 py-1 font-medium;
-        }
-      }
-    </style>
+    </div>
   </body>
 </html>
