@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from "react";
 import { IoMenu } from "react-icons/io5";
 import { RxCross2 } from "react-icons/rx";
@@ -15,7 +14,6 @@ const NavBar = ({
   const toggle = () => {
     setSearchOpen(!searhOpen);
   };
- 
 
   const searchBox = useRef<HTMLDivElement>(null);
   const searchEntry = useRef<HTMLInputElement>(null);
@@ -35,6 +33,20 @@ const NavBar = ({
       }
     });
   });
+
+ useEffect(() => {
+   if (searhOpen) {
+     document.body.style.overflow = "hidden";
+   } else {
+     document.body.style.overflow = "overlay";
+   }
+
+   return () => {
+     document.body.style.overflow = "auto";
+   };
+ }, [searhOpen]);
+
+
   return (
     <div className="w-full fixed top-0 z-[500] ">
       <div className="z-[500] py-4 inline-flex w-full justify-between bg-black/50 text-white">
@@ -48,7 +60,7 @@ const NavBar = ({
 
       {/* Search Modal */}
       <div
-        className={` absolute ${
+        className={` fixed ${
           searhOpen ? "flex" : "hidden"
         } z-[300]  flex-col items-center justify-center text-white w-full h-full top-0  left-0 right-0`}
       >

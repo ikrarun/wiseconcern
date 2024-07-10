@@ -24,9 +24,10 @@ const { imgLink, title, description } = Astro.props;
   </div>
   <Image
     src={imgLink}
-    alt=""
+    alt="hero"
     width={1920}
     height={1080}
+    loading={"eager"}
     class="h-screen absolute inset-0 w-full object-cover"
   />
 </div>
