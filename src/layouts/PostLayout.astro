@@ -1,5 +1,4 @@
 ---
-import Footer from "@/Footer.astro";
 import NavBar from "@/NavBar.svelte";
 interface Props {
   title: string;
@@ -36,7 +35,6 @@ const { title } = Astro.props;
         <NavBar title="Wise Concern" client:only="svelte" />
         <slot />
       </div>
-      <Footer />
     </div>
     <style is:global>
       body {

@@ -3,7 +3,7 @@
   import Icon from "@iconify/svelte";
   export let title: string;
   let isSearchOpen: boolean = false;
-  let background: string = "bg-black/50";
+  let background: string = "bg-black/70";
   const toggleIsSearchOpen = () => {
     isSearchOpen = !isSearchOpen;
   };
@@ -20,7 +20,7 @@
     if (window.scrollY > 0) {
       background = "bg-black";
     } else {
-      background = "bg-black/50";
+      background = "bg-black/70";
     }
   });
 </script>
@@ -31,23 +31,27 @@
   >
     <div class="inline-flex px-4 justify-between mx-auto w-full max-w-[900px]">
       <a href="/" class="text-2xl text-center">{title}</a>
+      <div>
+        <!-- Large Screen Menu -->
+        <form
+          autocomplete="off"
+          class="hidden sm:inline-flex font-semibold grow-0 gap-2 items-center justify-center bg-transparent border-2 border-white px-4 py-1 rounded-full"
+          on:submit|preventDefault={handleFormSubmission}
+        >
+          <input
+            type="text"
+            class="bg-transparent outline-none ring-0"
+            placeholder="Search"
+            name="search"
+          />
+          <button type="submit">
+            <Icon icon="mdi:magnify" />
+          </button>
+        </form>
+        <span class="border rounded-md mx-2 bg-white" />
 
-      <!-- Large Screen Menu -->
-      <form
-        autocomplete="off"
-        class="hidden sm:inline-flex grow-0 gap-2 items-center justify-center bg-transparent border border-white px-4 py-1 rounded-full"
-        on:submit|preventDefault={handleFormSubmission}
-      >
-        <input
-          type="text"
-          class="bg-transparent outline-none ring-0"
-          placeholder="Search"
-          name="search"
-        />
-        <button type="submit">
-          <Icon icon="mdi:magnify" />
-        </button>
-      </form>
+        <a href="/blogs" class="px-2 hidden sm:inline-flex">Blogs</a>
+      </div>
 
       <!-- Small screen Menu starts here -->
       <button class="sm:hidden text-2xl" on:click={toggleIsSearchOpen}>
@@ -57,13 +61,13 @@
       <!-- Small menu -->
       <div
         class="w-full {isSearchOpen
-          ? 'flex top-0 left-0'
-          : 'flex top-full left-0'} transition-all -z-40 duration-700 sm:hidden backdrop-blur-xl backdrop-brightness-50 h-full fixed px-12 items-center justify-center"
+          ? 'flex flex-col top-0 left-0'
+          : 'flex flex-col top-full left-0'} gap-4 transition-all -z-40 duration-700 sm:hidden backdrop-blur-xl backdrop-brightness-50 h-full fixed px-12 justify-center"
       >
         <!-- Forms -->
         <form
           autocomplete="off"
-          class="inline-flex w-full max-w-[500px] mx-auto gap-2 px-4 items-center justify-between bg-transparent border border-white py-1 rounded-full"
+          class="inline-flex w-full font-semibold max-w-[500px] mx-auto gap-2 px-4 items-center justify-between bg-transparent border-2 border-white py-1 rounded-full"
           on:submit|preventDefault={handleFormSubmission}
         >
           <input
@@ -76,6 +80,9 @@
             <Icon icon="mdi:magnify" />
           </button>
         </form>
+        <span class="border mx-1 rounded-full bg-white" />
+        <a href="/blogs" class="px-4">Blogs</a>
+        <span class="border mx-1 rounded-full bg-white" />
       </div>
       <!-- SearchBar Ends -->
       <!-- Small screen menu ends here -->
