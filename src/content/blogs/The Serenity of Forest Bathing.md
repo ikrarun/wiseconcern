@@ -1,6 +1,6 @@
 ---
 title: The Serenity of Forest Bathing
-image: https://picsum.photos/seed/forest/300/200
+image: https://images.unsplash.com/photo-1625262940731-993ff9d717ce?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 description: Immerse yourself in the healing power of nature with forest bathing.
 ---
 
@@ -31,5 +31,5 @@ Listen to the symphony of nature as birds sing, leaves rustle, and streams babbl
 ## Gratitude for Mother Earth
 
 Express gratitude for the beauty and abundance of the natural world, recognizing the interconnectedness of all living beings and the importance of preserving our precious ecosystems.
-
+[Link text Here](https://link-url-here.org)
 Immerse yourself in the serenity of forest bathing and let the healing power of nature restore balance and harmony to your mind, body, and spirit.

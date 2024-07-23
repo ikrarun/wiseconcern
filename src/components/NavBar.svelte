@@ -34,6 +34,7 @@
 
       <!-- Large Screen Menu -->
       <form
+        autocomplete="off"
         class="hidden sm:inline-flex grow-0 gap-2 items-center justify-center bg-transparent border border-white px-4 py-1 rounded-full"
         on:submit|preventDefault={handleFormSubmission}
       >
@@ -61,6 +62,7 @@
       >
         <!-- Forms -->
         <form
+          autocomplete="off"
           class="inline-flex w-full max-w-[500px] mx-auto gap-2 px-4 items-center justify-between bg-transparent border border-white py-1 rounded-full"
           on:submit|preventDefault={handleFormSubmission}
         >

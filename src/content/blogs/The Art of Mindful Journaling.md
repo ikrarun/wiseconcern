@@ -1,6 +1,6 @@
 ---
 title: The Art of Mindful Journaling
-image: https://picsum.photos/seed/journaling/300/200
+image: https://images.unsplash.com/photo-1456324504439-367cee3b3c32?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 description: Explore the transformative practice of mindful journaling for self-reflection and growth.
 ---
 

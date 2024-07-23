@@ -5,7 +5,7 @@ import type { BlogCollectionType } from "$/config";
 import { getCollection } from "astro:content";
 const allBlogPosts = await getCollection("blogs");
 const post: BlogCollectionType[] = allBlogPosts.map((post) => post.data);
-const firstPost = post[0];
+const firstPost = post[post.length - 1];
 ---
 
 <Layout title="Wise Concern">

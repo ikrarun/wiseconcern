@@ -1,5 +1,6 @@
 ---
 import Layout from "#/PostLayout.astro";
+import { Image } from "astro:assets";
 
 import { getEntry } from "astro:content";
 import { slugify } from "utils/utils";
@@ -23,7 +24,17 @@ const { Content } = await blogPost.render();
     class="w-full mx-auto max-w-[900px] grow flex flex-col py-32 min-h-dvh px-8"
   >
     <div
-      class="prose lg:prose-lg sm:prose-sm base:prose-base xl:prose-xl 2xl:prose-2xl w-full"
+      class="absolute z-[80] top-0 left-0 right-0 h-2/3 w-full overflow-clip"
+    >
+      <Image
+        src={blogPost.data.image}
+        alt={""}
+        inferSize
+        class="object-bottom w-full aspect-auto"
+      />
+    </div>
+    <div
+      class="prose z-[100] backdrop-blur-sm bg-white p-8 lg:prose-lg sm:prose-sm base:prose-base xl:prose-xl 2xl:prose-2xl w-full"
     >
       <Content />
     </div>

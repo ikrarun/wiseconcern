@@ -1,6 +1,6 @@
 ---
 title: My Favorite Books
-image: https://picsum.photos/seed/books/300/200
+image: https://images.unsplash.com/photo-1522211988038-6fcbb8c12c7e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 description: A list of my top recommended books across various genres.
 ---
 
