@@ -4,5 +4,10 @@ export default {
 	theme: {
 		extend: {},
 	},
-	plugins: [],
+	plugins: [
+		// @ts-expect-error
+		require('tailwindcss-debug-screens'),
+		require('@tailwindcss/typography'),
+
+	],
 }

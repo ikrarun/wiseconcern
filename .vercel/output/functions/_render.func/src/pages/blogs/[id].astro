@@ -1,0 +1,31 @@
+---
+import Layout from "#/PostLayout.astro";
+
+import { getEntry } from "astro:content";
+import { slugify } from "utils/utils";
+
+const params = Astro.params;
+const url = params.id;
+
+if (url === undefined) {
+  return Astro.redirect("/404");
+}
+
+const blogPost = await getEntry("blogs", slugify(url));
+if (blogPost === undefined) {
+  return Astro.redirect("/404");
+}
+const { Content } = await blogPost.render();
+---
+
+<Layout title={blogPost.data.title}>
+  <div
+    class="w-full mx-auto max-w-[900px] grow flex flex-col py-32 min-h-dvh px-8"
+  >
+    <div
+      class="prose lg:prose-lg sm:prose-sm base:prose-base xl:prose-xl 2xl:prose-2xl w-full"
+    >
+      <Content />
+    </div>
+  </div>
+</Layout>

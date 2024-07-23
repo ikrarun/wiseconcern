@@ -1,0 +1,38 @@
+---
+import type { BlogCollectionType } from "$/config";
+import { Image } from "astro:assets";
+import Layout from "#/Layout.astro";
+import { getCollection } from "astro:content";
+const allBlogPosts = await getCollection("blogs");
+const post: BlogCollectionType[] = allBlogPosts.map((post) => post.data);
+---
+
+<Layout title="Blogs">
+  <main class="min-h-dvh px-10 w-full flex flex-col">
+    <div class="flex flex-col gap-4 mt-36">
+      <h1 class="text-3xl font-black">Blogspage</h1>
+      <ul class="flex flex-col gap-2 my-10">
+        {
+          post.map((blog) => {
+            return (
+              <a
+                href={`/blogs/${blog.title}`}
+                class="flex flex-col gap-1 my-2 pb-4 first:pt-4 border-b first:border-t border-black border-dashed dash"
+              >
+                <Image
+                  class="h-32 w-fit"
+                  src={blog.image}
+                  alt={blog.title}
+                  inferSize
+                  loading={"lazy"}
+                />
+                <h1 class="text-xl font-semibold">{blog.title}</h1>
+                <h1 class="text-base">{blog.description}</h1>
+              </a>
+            );
+          })
+        }
+      </ul>
+    </div>
+  </main>
+</Layout>

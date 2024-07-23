@@ -1,0 +1,5 @@
+{
+    "workbench.iconTheme": "vscode-jetbrains-icon-theme-2023-auto",
+    "editor.fontFamily": "fira-code-nerd, FiraCode Nerd Font, Consolas, 'Courier New', monospace",
+    "editor.fontLigatures": true
+}
