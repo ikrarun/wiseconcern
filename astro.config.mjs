@@ -3,10 +3,8 @@ import icon from "astro-icon";
 import tailwind from "@astrojs/tailwind";
 import react from "@astrojs/react";
 import svelte from "@astrojs/svelte";
-// import serviceWorker from "astrojs-service-worker";
 import partytown from "@astrojs/partytown";
 
-// import vercel from "@astrojs/vercel/serverless";
 
 import vercel from "@astrojs/vercel/serverless";
 
@@ -16,8 +14,6 @@ export default defineConfig({
   image: {
     domains: ['https://images.pexels.com/']
   },
-  output: "server"
-  // adapter: vercel()
-  ,
+  output: "server",
   adapter: vercel()
 });

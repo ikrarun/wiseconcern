@@ -30,7 +30,7 @@
     class="py-4 inline-flex w-full justify-between transition-all duration-700 ease-in-out {background} text-white"
   >
     <div class="inline-flex px-4 justify-between mx-auto w-full max-w-[900px]">
-      <h1 class="text-2xl text-center">{title}</h1>
+      <a href="/" class="text-2xl text-center">{title}</a>
 
       <!-- Large Screen Menu -->
       <form
