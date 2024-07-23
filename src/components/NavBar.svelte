@@ -51,6 +51,9 @@
         <span class="border rounded-md mx-2 bg-white" />
 
         <a href="/blogs" class="px-2 hidden sm:inline-flex">Blogs</a>
+        <span class="border rounded-md mx-2 bg-white" />
+
+        <a href="/about" class="px-2 hidden sm:inline-flex">About</a>
       </div>
 
       <!-- Small screen Menu starts here -->
@@ -82,6 +85,8 @@
         </form>
         <span class="border mx-1 rounded-full bg-white" />
         <a href="/blogs" class="px-4">Blogs</a>
+        <span class="border mx-1 rounded-full bg-white" />
+        <a href="/about" class="px-4">About</a>
         <span class="border mx-1 rounded-full bg-white" />
       </div>
       <!-- SearchBar Ends -->
