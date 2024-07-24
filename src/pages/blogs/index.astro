@@ -8,9 +8,11 @@ const post: BlogCollectionType[] = allBlogPosts.map((post) => post.data);
 ---
 
 <Layout title="Blogs">
-  <main class="min-h-dvh px-10 w-full flex flex-col">
-    <div class="flex flex-col w-full max-w-[900px] mx-auto gap-4 mt-36">
-      <h1 class="text-3xl font-black">Blogspage</h1>
+  <main class="h-dvh px-10 overflow-hidden w-full flex flex-col">
+    <div
+      class="flex flex-col w-full pt-28 overflow-y-scroll scrollarea max-w-[900px] mx-auto gap-4"
+    >
+      <h1 class="text-3xl z-50 text-white font-black">Blogspage</h1>
       <div class="grid sm:grid-cols-2 grid-cols-1 gap-4 my-10">
         {
           post.map((blog) => {
@@ -35,6 +37,15 @@ const post: BlogCollectionType[] = allBlogPosts.map((post) => post.data);
           })
         }
       </div>
+      <!-- Image -->
+      <Image
+        src="https://images.unsplash.com/photo-1557683316-973673baf926?q=80&w=1129&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        alt=""
+        width={1920}
+        height={1080}
+        loading={"eager"}
+        class="h-dvh absolute inset-0 w-full object-cover"
+      />
     </div>
   </main>
 </Layout>
