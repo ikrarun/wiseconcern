@@ -2,7 +2,6 @@
   import Icon from "@iconify/svelte";
 
   export let title: string;
-  import Search from "astro-pagefind/components/Search";
   let isSearchOpen: boolean = false;
   let isMenuOpen: boolean = false;
 
@@ -75,11 +74,6 @@
       </button>
     </form>
 
-    <Search
-      id="search"
-      className="pagefind-ui"
-      uiOptions={{ showImages: false }}
-    />
     <button
       on:click|preventDefault={toggleIsSearchOpen}
       class="inline-flex items-center bg-white rounded-full px-4 py-2 text-black justify-center z-[900] gap-2"
