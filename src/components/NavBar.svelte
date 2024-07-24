@@ -48,10 +48,10 @@
             <Icon icon="mdi:magnify" />
           </button>
         </form>
-        <span class="border rounded-md sm:flex bg-white" />
+        <span class="border rounded-md hidden sm:flex bg-white" />
 
         <a href="/blogs" class="hidden sm:inline-flex">Blogs</a>
-        <span class="border sm:flex rounded-md bg-white" />
+        <span class="border sm:flex  hidden rounded-md bg-white" />
 
         <a href="/about" class="hidden sm:inline-flex">About</a>
       </div>
