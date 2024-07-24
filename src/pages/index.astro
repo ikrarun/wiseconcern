@@ -10,19 +10,11 @@ const firstPost = post[post.length - 1];
 
 <Layout title="Wise Concern">
   <main class="w-full max-w-[900px] mx-auto px-8 grow h-full flex flex-col">
-    <ul class="grid grid-cols-1 gap-4">
-      <PostCard
-        title={firstPost.title}
-        description={firstPost.description}
-        imgLink={firstPost.image}
-        url={"/blogs/" + firstPost.title}
-      />
-      <PostCard
-        title={firstPost.title}
-        description={firstPost.description}
-        imgLink={firstPost.image}
-        url={"/blogs/" + firstPost.title}
-      />
-    </ul>
+    <PostCard
+      title={firstPost.title}
+      description={firstPost.description}
+      imgLink={firstPost.image}
+      url={"/blogs/" + firstPost.title}
+    />
   </main>
 </Layout>
