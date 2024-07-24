@@ -1,0 +1,47 @@
+---
+import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
+interface Props {
+  imgLink: string;
+  title: string;
+  description: string;
+  url: string;
+}
+const { imgLink, title, description, url } = Astro.props;
+---
+
+<!-- desktop layout-->
+<div
+  class="flex flex-col sm:flex-row sm:even:flex-row-reverse w-full border-2 rounded-xl overflow-clip mx-auto"
+>
+  <Image
+    src={imgLink}
+    alt={title}
+    class="sm:w-2/5 w-full sm:h-full h-52 object-cover"
+    inferSize
+  />
+  <div class="flex flex-col h-full sm:w-3/5 gap-4 p-4 sm:p-8">
+    <h1 class="text-2xl sm:text-3xl font-bold">{title}</h1>
+    <span class="grow">
+      <p class="text-base sm:text-lg font-normal line-clamp-2">
+        {description}
+      </p>
+    </span>
+    <a
+      href={url}
+      class="text-white inline-flex items-center gap-3 hover:scale-110 transition-all duration-500 bg-black w-fit rounded-full px-4 py-2 text-xs sm:text-sm justify-self-end"
+      >Read Now<Icon name="mdi:arrow-right" /></a
+    >
+  </div>
+
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Gabarito:wght@400..900&display=swap");
+    h1,
+    p,
+    a {
+      font-family: "Gabarito", sans-serif;
+      font-optical-sizing: auto;
+      font-style: normal;
+    }
+  </style>
+</div>

@@ -3,7 +3,8 @@
   import Icon from "@iconify/svelte";
   export let title: string;
   let isSearchOpen: boolean = false;
-  let background: string = "bg-black/70";
+  let isMenuOpen: boolean = false;
+  let textColor: string = "text-black";
   const toggleIsSearchOpen = () => {
     isSearchOpen = !isSearchOpen;
   };
@@ -15,82 +16,103 @@
 
   window.addEventListener("resize", () => {
     isSearchOpen = false;
+    isMenuOpen = false;
   });
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 0) {
-      background = "bg-black";
+  const toggleMenuOpen = () => {
+    isMenuOpen = !isMenuOpen;
+  };
+
+  $: {
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden";
+      textColor = "text-white"; // Disable scrolling on the body when isMenuOpen is true
     } else {
-      background = "bg-black/70";
-    }
-  });
+      document.body.style.overflow = "";
+      textColor = "text-black";
+    } // Reset overflow style when isMenuOpen is false
+  }
 </script>
 
-<div class="w-full fixed top-0 z-[900]">
+<div
+  class="w-full flex fixed transition-all bg-white {textColor} duration-100 ease-in-out left-0 right-0 top-0 z-[500] items-center mx-auto justify-center"
+>
   <div
-    class="py-4 inline-flex w-full justify-between transition-all duration-700 ease-in-out {background} text-white"
+    class="inline-flex justify-between max-w-[900px] px-4 items-center w-full py-2"
   >
-    <div class="inline-flex px-4 justify-between mx-auto w-full max-w-[900px]">
-      <a href="/" class="text-2xl text-center">{title}</a>
-      <div class="inline-flex items-center gap-4 justify-between">
-        <!-- Large Screen Menu -->
-        <form
-          autocomplete="off"
-          class="hidden sm:inline-flex font-semibold grow-0 gap-2 items-center justify-center bg-transparent border-2 border-white px-4 py-1 rounded-full"
-          on:submit|preventDefault={handleFormSubmission}
-        >
-          <input
-            type="text"
-            class="bg-transparent outline-none ring-0"
-            placeholder="Search"
-            name="search"
-          />
-          <button type="submit">
-            <Icon icon="mdi:magnify" />
-          </button>
-        </form>
-        <span class="border rounded-md hidden sm:flex bg-white" />
+    <button class="" on:click|preventDefault={toggleMenuOpen}>
+      {#if isMenuOpen}
+        <Icon icon="mdi:close" class="text-xl" />
+      {:else}
+        <Icon icon="mdi:menu" class="text-xl" />
+      {/if}</button
+    >
 
-        <a href="/blogs" class="hidden sm:inline-flex">Blogs</a>
-        <span class="border sm:flex  hidden rounded-md bg-white" />
+    <a href="/" class="font-black text-3xl uppercase">{title}</a>
+    <!-- 
+  
+    <nav class="hidden sm:inline-flex gap-8 text-lg uppercase">
+      <a href="/blogs">Blogs</a>
+      <a href="/about">About</a>
+    </nav> -->
 
-        <a href="/about" class="hidden sm:inline-flex">About</a>
-      </div>
+    <button on:click|preventDefault={toggleIsSearchOpen}
+      ><Icon icon="mdi:magnify" class="text-xl" /></button
+    >
+  </div>
 
-      <!-- Small screen Menu starts here -->
-      <button class="sm:hidden text-2xl" on:click={toggleIsSearchOpen}>
-        <Icon icon={isSearchOpen ? "mdi:cross-circle" : "mdi:menu"} />
-      </button>
-
-      <!-- Small menu -->
-      <div
-        class="w-full {isSearchOpen
-          ? 'flex flex-col top-0 left-0'
-          : 'flex flex-col top-full left-0'} gap-4 transition-all -z-40 duration-700 sm:hidden backdrop-blur-xl backdrop-brightness-50 h-full fixed px-12 justify-center"
+  <!-- SearchBar -->
+  <div
+    class="{isSearchOpen
+      ? 'flex'
+      : 'hidden'} flex-col z-[500] gap-4 p-8 justify-center items-center w-full h-fit bg-black fixed top-0 left-0 right-0 transition-all duration-300 ease-in-out"
+  >
+    <form
+      on:submit|preventDefault={handleFormSubmission}
+      class="w-full max-w-[900px] z-[500] inline-flex items-center outline border-2 border-white rounded-full px-8 py-3 justify-center"
+    >
+      <input
+        type="text"
+        name="search"
+        placeholder="What are you looking for?"
+        class="grow bg-transparent outline-none ring-0 text-white"
+      />
+      <button
+        type="submit"
+        class="inline-flex items-center justify-center gap-2 text-white"
       >
-        <!-- Forms -->
-        <form
-          autocomplete="off"
-          class="inline-flex w-full font-semibold max-w-[500px] mx-auto gap-2 px-4 items-center justify-between bg-transparent border-2 border-white py-1 rounded-full"
-          on:submit|preventDefault={handleFormSubmission}
-        >
-          <input
-            type="text"
-            class="bg-transparent grow outline-none ring-0"
-            placeholder="Search"
-            name="search"
-          />
-          <button type="submit">
-            <Icon icon="mdi:magnify" />
-          </button>
-        </form>
-        <span class="border mx-1 rounded-full bg-white" />
-        <a href="/blogs" class="px-4">Blogs</a>
-        <span class="border mx-1 rounded-full bg-white" />
-        <a href="/about" class="px-4">About</a>
-        <span class="border mx-1 rounded-full bg-white" />
-      </div>
-      <!-- SearchBar Ends -->
-      <!-- Small screen menu ends here -->
-    </div>
+        <Icon icon="mdi:magnify" class="text-xl" />
+        <span>Search</span>
+      </button>
+    </form>
+    <button
+      on:click|preventDefault={toggleIsSearchOpen}
+      class="inline-flex items-center justify-center z-[500] gap-2 text-white"
+    >
+      <Icon icon="mdi:close" class="text-xl" />
+      <span>Close</span>
+    </button>
+  </div>
+
+  <!-- Nav Menu -->
+  <div
+    class="fixed left-0 uppercase -z-50 right-0 items-center justify-center flex flex-col {isMenuOpen
+      ? 'top-0'
+      : '-top-full'} px-8 h-full bg-blue-700 text-white transition-all duration-700 ease-in-out"
+  >
+    <a href="/" class="text-xl">Home</a>
+    <span class="rounded-full my-2 bg-white/30 w-2/3 h-0.5" />
+    <a href="/blogs" class="text-xl">Blogs</a>
+    <span class="rounded-full my-2 bg-white/30 w-2/3 h-0.5" />
+    <a href="/about" class="text-xl">About</a>
+    <span class="rounded-full my-2 bg-white/30 w-2/3 h-0.5" />
   </div>
 </div>
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Gabarito:wght@400..900&display=swap");
+  div {
+    font-family: "Gabarito", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+  }
+</style>

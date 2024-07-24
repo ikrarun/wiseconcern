@@ -5,24 +5,20 @@ import { Image } from "astro:assets";
 import qr from "./qr.png";
 ---
 
-<Layout title="About">
-  <div
-    class="min-h-dvh grow flex overflow-hidden flex-col justify-center w-full"
-  >
-    <div
-      class="flex px-8 h-dvh grow-0 overflow-y-scroll scrollarea flex-col my-auto z-20 text-white bg-black/40 w-full"
-    >
+<Layout title="WC | About">
+  <div class="min-h-dvh grow flex flex-col justify-start w-full">
+    <div class="flex px-8 min-h-dvh grow-0 flex-col my-auto z-20 w-full">
       <div
-        class="max-w-[900px] p-2 pt-32 pb-12 flex flex-col gap-4 w-full mx-auto"
+        class="max-w-[900px] p-2 pt-20 pb-6 flex flex-col gap-4 w-full mx-auto"
       >
         <div
-          class="w-full text-base flex flex-col gap-4 max-w-[900px] bg-black/50 rounded-2xl px-8 py-6 mx-auto"
+          class="w-full text-base flex flex-col gap-4 max-w-[900px] rounded-2xl px-8 py-6 mx-auto"
         >
           <div class="font-semibold">
-            <h1 class="text-3xl font-bold text-center mb-4">
+            <h1 class="text-3xl font-bold text-start mb-4">
               Welcome to Wise Concern: Your Hub for Essential Knowledge
             </h1>
-            <p class="text-center">
+            <p class="text-start">
               Hello, informed viewers! Ready to expand your understanding of the
               world? Wise Concern is your go-to channel for content that every
               concerned and informed citizen should know!
@@ -48,13 +44,13 @@ import qr from "./qr.png";
               </li>
             </ol>
 
-            <p class="text-center mt-8">
+            <p class="text-start mt-8">
               Join Wise Concern! Subscribe to "Wise Concern" for content that
               keeps you informed and engaged. Let's explore the world together
               and become more knowledgeable citizens!
             </p>
 
-            <p class="text-center mt-4">Learn, Discuss, and Stay Informed!</p>
+            <p class="text-start mt-4">Learn, Discuss, and Stay Informed!</p>
           </div>
           <span class="border rounded-md bg-white"></span>
 
@@ -63,7 +59,7 @@ import qr from "./qr.png";
           </h1>
 
           <a
-            class="p-2 inline-flex items-center gap-2 px-4 w-fit bg-blue-700 text-white rounded-full"
+            class="p-2 inline-flex items-center gap-2 px-4 w-fit bg-green-700 text-white rounded-full"
             href="https://whatsapp.com/channel/0029Vafjp071SWt58vG98G45"
           >
             Join WhatsApp <Icon class="text-xl" name="mdi:whatsapp" />
@@ -72,14 +68,5 @@ import qr from "./qr.png";
         </div>
       </div>
     </div>
-    <!-- Image -->
-    <Image
-      src="https://images.unsplash.com/photo-1557683316-973673baf926?q=80&w=1129&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-      alt=""
-      width={1920}
-      height={1080}
-      loading={"eager"}
-      class="h-dvh absolute inset-0 w-full object-cover"
-    />
   </div>
 </Layout>
