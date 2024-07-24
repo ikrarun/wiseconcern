@@ -1,6 +1,5 @@
 ---
 import PostCard from "@/PostCard.astro";
-import Search from "astro-pagefind/components/Search";
 export const prerender = false;
 import Layout from "../layouts/Layout.astro";
 import type { BlogCollectionType } from "$/config";
@@ -12,11 +11,6 @@ const firstPost = post[post.length - 1];
 
 <Layout title="Wise Concern">
   <main class="w-full max-w-[900px] mx-auto px-8 grow h-full flex flex-col">
-    <Search
-      id="search"
-      className="pagefind-ui"
-      uiOptions={{ showImages: false }}
-    />
     <h1 class="text-2xl underline underline-offset-8 font-semibold m-4">
       Featured Blog
     </h1>

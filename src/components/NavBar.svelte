@@ -56,15 +56,17 @@
       : 'hidden'} flex-col z-[900] gap-4 p-8 justify-center items-center w-full h-fit bg-black fixed top-0 left-0 right-0 transition-all duration-300 ease-in-out"
   >
     <form
-      on:submit|preventDefault={handleFormSubmission}
       class="w-full max-w-[900px] z-[900] inline-flex items-center outline border-2 border-white rounded-full px-8 py-3 justify-center"
+      on:submit|preventDefault={handleFormSubmission}
     >
-      <input
-        type="text"
-        name="search"
-        placeholder="What are you looking for?"
-        class="grow bg-transparent outline-none ring-0 z-[900] text-white"
-      />
+      <div class="flex flex-col gap-2">
+        <input
+          type="text"
+          name="search"
+          placeholder="What are you looking for?"
+          class="grow bg-transparent outline-none ring-0 z-[900] text-white"
+        />
+      </div>
       <button
         type="submit"
         class="inline-flex items-center justify-center z-[900] gap-2 text-white"
@@ -75,8 +77,8 @@
     </form>
 
     <button
-      on:click|preventDefault={toggleIsSearchOpen}
       class="inline-flex items-center bg-white rounded-full px-4 py-2 text-black justify-center z-[900] gap-2"
+      on:click|preventDefault={toggleIsSearchOpen}
     >
       <Icon icon="mdi:close" class="text-xl" />
       <span>Close</span>
