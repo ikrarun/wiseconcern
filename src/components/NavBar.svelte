@@ -2,7 +2,7 @@
   import Icon from "@iconify/svelte";
 
   export let title: string;
-
+  import Search from "astro-pagefind/components/Search";
   let isSearchOpen: boolean = false;
   let isMenuOpen: boolean = false;
 
@@ -16,10 +16,6 @@
     window.location.href = `/blogs/${formData.get("search")}`;
   };
 
-  window.addEventListener("DOMContentLoaded", (event) => {
-    // @ts-ignore
-    new PagefindUI({ element: "#search", showSubResults: true });
-  });
   const toggleMenuOpen = () => {
     isMenuOpen = !isMenuOpen;
   };
@@ -79,8 +75,11 @@
       </button>
     </form>
 
-    <div id="search"></div>
-
+    <Search
+      id="search"
+      className="pagefind-ui"
+      uiOptions={{ showImages: false }}
+    />
     <button
       on:click|preventDefault={toggleIsSearchOpen}
       class="inline-flex items-center bg-white rounded-full px-4 py-2 text-black justify-center z-[900] gap-2"
