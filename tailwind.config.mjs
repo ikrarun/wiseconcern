@@ -2,12 +2,11 @@
 export default {
 	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
 	theme: {
-		
+		extend: {}
 	},
-plugins: [
-	// @ts-expect-error
-	require('tailwindcss-debug-screens'),
-	require('@tailwindcss/typography'),
-
-],
+	plugins: [
+		// @ts-expect-error
+		require('tailwindcss-debug-screens'),
+		require('@tailwindcss/typography'),
+	],
 }

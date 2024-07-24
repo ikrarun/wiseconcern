@@ -7,9 +7,12 @@ const allBlogPosts = await getCollection("blogs");
 const post: BlogCollectionType[] = allBlogPosts.map((post) => post.data);
 ---
 
-<Layout title="WC | Blogs">
+<Layout title={"Blogs - WC"}>
   <main class="h-full grow px-10 w-full flex flex-col">
     <div class="flex flex-col w-full sm:px-12 px-0 max-w-[900px] mx-auto gap-4">
+      <h1 class="text-2xl underline underline-offset-8 font-semibold mx-4 my-2">
+        Blogs
+      </h1>
       {
         post.map((blog) => {
           return (

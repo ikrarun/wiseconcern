@@ -22,10 +22,10 @@ const { title } = Astro.props;
 
     <ViewTransitions />
   </head>
-  <body class=`flex flex-col min-h-svh w-full` transition:persist>
+  <body class="flex flex-col min-h-svh w-full" transition:persist>
     <div class="flex grow h-full w-full flex-col">
       <div class="flex pt-24 pb-6 flex-col h-full w-full grow">
-        <NavBar title={title} client:only="svelte" />
+        <NavBar title={"Wise Concern"} client:only="svelte" />
         <slot />
       </div>
     </div>
@@ -43,14 +43,6 @@ const { title } = Astro.props;
         scrollbar-width: none; /* Firefox */
       }
       :root::-webkit-scrollbar {
-        display: none; /* Safari and Chrome */
-      }
-
-      .scrollarea {
-        -ms-overflow-style: none; /* Internet Explorer 10+ */
-        scrollbar-width: none; /* Firefox */
-      }
-      .scrollarea::-webkit-scrollbar {
         display: none; /* Safari and Chrome */
       }
     </style>

@@ -22,6 +22,7 @@
     "@fontsource/dela-gothic-one": "^5.0.19",
     "@fontsource/open-sans": "^5.0.28",
     "@iconify-json/mdi": "^1.1.67",
+    "@tailwindcss/typography": "^0.5.13",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "astro": "^4.12.2",
@@ -38,7 +39,6 @@
   },
   "devDependencies": {
     "@iconify/svelte": "^4.0.2",
-    "@tailwindcss/typography": "^0.5.13",
     "tailwindcss-debug-screens": "^2.2.1"
   }
 }

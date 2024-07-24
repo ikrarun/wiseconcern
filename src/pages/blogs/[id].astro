@@ -1,5 +1,5 @@
 ---
-import Layout from "#/PostLayout.astro";
+import Layout from "#/Layout.astro";
 import { Image } from "astro:assets";
 
 import { getEntry } from "astro:content";
@@ -21,30 +21,19 @@ const { Content } = await blogPost.render();
 
 <Layout title={blogPost.data.title}>
   <div
-    class="w-full mx-auto max-w-[900px] items-center grow pt-6 flex flex-col h-full"
+    class="w-full mx-auto max-w-[900px] px-8 items-center grow pt-6 flex flex-col h-fit"
   >
     <Image
       src={blogPost.data.image}
-      alt={""}
+      alt={blogPost.data.title}
       inferSize
       loading={"eager"}
-      class="object-cover rounded-t-xl h-52 m-4 w-full max-w-[780px] aspect-auto"
+      class="object-cover rounded-t-xl h-52 w-full max-w-[780px] aspect-auto"
     />
-    <div
-      class="w-full flex flex-col gap-2  max-w-[780px] prose-a:text-blue-600 prose-a:decoration-dotted prose-a:underline-offset-4 prose"
+    <article
+      class="w-full prose-headings:my-1 my-2 prose-ul:my-1 flex flex-col max-w-[780px] prose-a:text-blue-600 prose-a:decoration-dotted prose-a:underline-offset-8 prose"
     >
       <Content />
-    </div>
+    </article>
   </div>
 </Layout>
-
-<style>
-  @import url("https://fonts.googleapis.com/css2?family=Gabarito:wght@400..900&display=swap");
-  h1,
-  p,
-  a {
-    font-family: "Gabarito", sans-serif;
-    font-optical-sizing: auto;
-    font-style: normal;
-  }
-</style>
