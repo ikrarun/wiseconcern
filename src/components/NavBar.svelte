@@ -31,7 +31,7 @@
   >
     <div class="inline-flex px-4 justify-between mx-auto w-full max-w-[900px]">
       <a href="/" class="text-2xl text-center">{title}</a>
-      <div>
+      <div class="inline-flex items-center gap-4 justify-between">
         <!-- Large Screen Menu -->
         <form
           autocomplete="off"
@@ -48,12 +48,12 @@
             <Icon icon="mdi:magnify" />
           </button>
         </form>
-        <span class="border rounded-md hidden sm:inline-flex mx-2 bg-white" />
+        <span class="border rounded-md sm:flex bg-white" />
 
-        <a href="/blogs" class="px-2 hidden sm:inline-flex">Blogs</a>
-        <span class="border hidden sm:inline-flex rounded-md mx-2 bg-white" />
+        <a href="/blogs" class="hidden sm:inline-flex">Blogs</a>
+        <span class="border sm:flex rounded-md bg-white" />
 
-        <a href="/about" class="px-2 hidden sm:inline-flex">About</a>
+        <a href="/about" class="hidden sm:inline-flex">About</a>
       </div>
 
       <!-- Small screen Menu starts here -->
