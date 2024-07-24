@@ -1,18 +1,33 @@
 <script lang="ts">
+  import type { BlogCollectionType } from "$/config";
   import Icon from "@iconify/svelte";
-
+  import { getCollection } from "astro:content";
+  import Fuse from "fuse.js";
   export let title: string;
   let isSearchOpen: boolean = false;
   let isMenuOpen: boolean = false;
-
+  let searchResults: BlogCollectionType[] = [];
   const toggleIsSearchOpen = () => {
     isSearchOpen = !isSearchOpen;
   };
+  let fuse: any;
+  const setUPFuSE = async () => {
+    const allBlogPosts = await getCollection("blogs");
+    const post: BlogCollectionType[] = allBlogPosts.map((post) => post.data);
+    fuse = new Fuse(post, {
+      keys: ["title"],
+    });
+  };
+
+  setUPFuSE();
   const handleFormSubmission = (e: Event) => {
     console.log("triggered");
     const formData = new FormData(e.target as HTMLFormElement);
-    console.log(formData.get("search"));
-    window.location.href = `/blogs/${formData.get("search")}`;
+    // console.log(formData.get("search"));
+    // window.location.href = `/blogs/${formData.get("search")}`;
+    const res = fuse.search(formData.get("search"));
+    searchResults = res.map((res: { item: any }) => res.item);
+    console.log(searchResults);
   };
 
   const toggleMenuOpen = () => {
@@ -83,6 +98,17 @@
       <Icon icon="mdi:close" class="text-xl" />
       <span>Close</span>
     </button>
+
+    {#if searchResults.length > 0}
+      {#each searchResults as result}
+        <a
+          href={`/blogs/${result.title}`}
+          class="inline-flex items-center bg-white rounded-full px-4 py-2 text-black justify-center z-[900] gap-2"
+        >
+          <span>{result.title}</span>
+        </a>
+      {/each}
+    {/if}
   </div>
 
   <!-- Nav Menu -->
