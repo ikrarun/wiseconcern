@@ -7,8 +7,6 @@ interface Props {
 import { ViewTransitions } from "astro:transitions";
 
 const { title } = Astro.props;
-let productionMode = process.env.NODE_ENV || "development";
-let isProduction = productionMode !== "development";
 ---
 
 <html lang="en">
@@ -31,10 +29,7 @@ let isProduction = productionMode !== "development";
 
     <ViewTransitions />
   </head>
-  <body
-    class=`flex ${isProduction?'':'debug-screens'} flex-col w-full`
-    transition:persist
-  >
+  <body class=`flex flex-col w-full` transition:persist>
     <div class="flex grow w-full flex-col">
       <div class="flex flex-col h-full w-full grow">
         <NavBar title="Wise Concern" client:only="svelte" />
