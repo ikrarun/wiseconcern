@@ -21,21 +21,17 @@ const { Content } = await blogPost.render();
 
 <Layout title={blogPost.data.title}>
   <div
-    class="w-full mx-auto max-w-[900px] items-center grow pt-6 flex flex-col h-full px-8"
+    class="w-full mx-auto max-w-[900px] items-center grow pt-6 flex flex-col h-full"
   >
+    <Image
+      src={blogPost.data.image}
+      alt={""}
+      inferSize
+      loading={"eager"}
+      class="object-cover rounded-t-xl h-52 m-4 w-full max-w-[780px] aspect-auto"
+    />
     <div
-      class="fixed z-[80] top-0 left-0 right-0 bottom-0 object-cover h-full w-full overflow-clip"
-    >
-      <Image
-        src={blogPost.data.image}
-        alt={""}
-        inferSize
-        loading={"eager"}
-        class="object-cover h-full w-full aspect-auto"
-      />
-    </div>
-    <div
-      class="z-[100] prose-a:text-blue-600 prose-a:decoration-dotted prose-a:decorates snap-start backdrop-blur-sm grow flex flex-col bg-white p-8 prose w-full"
+      class="w-full flex flex-col gap-2  max-w-[780px] prose-a:text-blue-600 prose-a:decoration-dotted prose-a:underline-offset-4 prose"
     >
       <Content />
     </div>

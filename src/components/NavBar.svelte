@@ -1,10 +1,11 @@
 <script lang="ts">
-  // @ts-ignore
   import Icon from "@iconify/svelte";
+
   export let title: string;
+
   let isSearchOpen: boolean = false;
   let isMenuOpen: boolean = false;
-  let textColor: string = "text-black";
+
   const toggleIsSearchOpen = () => {
     isSearchOpen = !isSearchOpen;
   };
@@ -25,16 +26,14 @@
   $: {
     if (isMenuOpen) {
       document.body.style.overflow = "hidden";
-      textColor = "text-white"; // Disable scrolling on the body when isMenuOpen is true
     } else {
       document.body.style.overflow = "";
-      textColor = "text-black";
-    } // Reset overflow style when isMenuOpen is false
+    }
   }
 </script>
 
 <div
-  class="w-full flex fixed transition-all bg-white {textColor} duration-100 ease-in-out left-0 right-0 top-0 z-[500] items-center mx-auto justify-center"
+  class="w-full flex fixed transition-all bg-amber-400 text-black duration-100 ease-in-out left-0 right-0 top-0 z-[500] items-center mx-auto justify-center"
 >
   <div
     class="inline-flex justify-between max-w-[900px] px-4 items-center w-full py-2"
@@ -48,12 +47,6 @@
     >
 
     <a href="/" class="font-black text-3xl uppercase">{title}</a>
-    <!-- 
-  
-    <nav class="hidden sm:inline-flex gap-8 text-lg uppercase">
-      <a href="/blogs">Blogs</a>
-      <a href="/about">About</a>
-    </nav> -->
 
     <button on:click|preventDefault={toggleIsSearchOpen}
       ><Icon icon="mdi:magnify" class="text-xl" /></button
@@ -97,14 +90,18 @@
   <div
     class="fixed left-0 uppercase -z-50 right-0 items-center justify-center flex flex-col {isMenuOpen
       ? 'top-0'
-      : '-top-full'} px-8 h-full bg-blue-700 text-white transition-all duration-700 ease-in-out"
+      : '-top-full'} px-8 h-full bg-amber-400 text-black transition-all duration-700 ease-in-out"
   >
-    <a href="/" class="text-xl">Home</a>
-    <span class="rounded-full my-2 bg-white/30 w-2/3 h-0.5" />
-    <a href="/blogs" class="text-xl">Blogs</a>
-    <span class="rounded-full my-2 bg-white/30 w-2/3 h-0.5" />
-    <a href="/about" class="text-xl">About</a>
-    <span class="rounded-full my-2 bg-white/30 w-2/3 h-0.5" />
+    <div
+      class="flex flex-col w-full  max-w-[380px] mx-auto justify-center items-center"
+    >
+      <a href="/" class="text-xl">Home</a>
+      <span class="rounded-full my-2 bg-black/30 w-2/3 h-0.5" />
+      <a href="/blogs" class="text-xl">Blogs</a>
+      <span class="rounded-full my-2 bg-black/30 w-2/3 h-0.5" />
+      <a href="/about" class="text-xl">About</a>
+      <span class="rounded-full my-2 bg-black/30 w-2/3 h-0.5" />
+    </div>
   </div>
 </div>
 

@@ -1,6 +1,6 @@
 ---
 title: The Serenity of Forest Bathing
-image: https://images.unsplash.com/photo-1625262940731-993ff9d717ce?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
+image: https://images.pexels.com/photos/214574/pexels-photo-214574.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1
 description: Practice mindfulness as you walk through the forest, tuning into the rustling leaves, chirping birds, and gentle breeze to cultivate a deep connection with the natural world.
 ---
 

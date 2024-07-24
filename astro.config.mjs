@@ -10,7 +10,7 @@ import vercel from "@astrojs/vercel/serverless";
 export default defineConfig({
   integrations: [icon(), tailwind(), react(), svelte(), partytown(),],
   image: {
-    domains: ['https://images.pexels.com/']
+    domains: ['https://images.pexels.com/','https://images.unsplash.com/']
   },
   output: "server",
   adapter: vercel()
