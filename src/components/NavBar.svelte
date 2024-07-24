@@ -16,6 +16,10 @@
     window.location.href = `/blogs/${formData.get("search")}`;
   };
 
+  window.addEventListener("DOMContentLoaded", (event) => {
+    // @ts-ignore
+    new PagefindUI({ element: "#search", showSubResults: true });
+  });
   const toggleMenuOpen = () => {
     isMenuOpen = !isMenuOpen;
   };
@@ -74,6 +78,9 @@
         <span>Search</span>
       </button>
     </form>
+
+    <div id="search"></div>
+
     <button
       on:click|preventDefault={toggleIsSearchOpen}
       class="inline-flex items-center bg-white rounded-full px-4 py-2 text-black justify-center z-[900] gap-2"

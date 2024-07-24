@@ -6,15 +6,17 @@ import { getEntry } from "astro:content";
 import { slugify } from "utils/utils";
 
 const params = Astro.params;
+
 const url = params.id;
 
 if (url === undefined) {
-  return Astro.redirect("/404?search=" + url);
+  
+  return new Response("Not found", { status: 404 });
 }
 
 const blogPost = await getEntry("blogs", slugify(url));
 if (blogPost === undefined) {
-  return Astro.redirect("/blogs/404?search=" + url);
+  return new Response("Not found", { status: 404 });
 }
 const { Content } = await blogPost.render();
 ---
