@@ -24,4 +24,4 @@ pnpm-debug.log*
 .idea/
 
 #lockfiles
-./pnpm-lock.yaml
+pnpm-lock.yaml
