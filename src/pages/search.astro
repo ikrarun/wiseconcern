@@ -26,6 +26,37 @@ const results = res.map((res: { item: any }) => res.item);
 export { results, searchString };
 ---
 
+<script>
+  import DOMPurify from "dompurify";
+
+  function handleSubmit(e: Event) {
+    e.preventDefault();
+
+    const url = new URL(window.location.href);
+    window.location.href = DOMPurify.sanitize(url.href);
+  }
+
+  function handleInput(e: Event) {
+    const value = (e.currentTarget as HTMLInputElement).value;
+    const url = new URL(window.location.href);
+
+    if (value.length === 0) {
+      url.searchParams.delete("q");
+    } else {
+      url.searchParams.set("q", DOMPurify.sanitize(value));
+    }
+    let sanitizedURL = DOMPurify.sanitize(url.toString());
+    // Update the URL in the browser without reloading the page
+    window.history.replaceState(null, "", sanitizedURL);
+  }
+
+  document.getElementById("search")?.addEventListener("input", handleInput);
+
+  document
+    .getElementsByTagName("form")[0]
+    .addEventListener("submit", handleSubmit);
+</script>
+
 <Layout title={"Search Results - WC"}>
   <main class="h-full max-w-[900px] mx-auto grow px-10 w-full flex flex-col">
     <div
@@ -36,8 +67,10 @@ export { results, searchString };
       >
         <input
           id="search"
-          type="text"
+          type="search"
           name="q"
+          minlength="3"
+          maxlength="48"
           autocomplete="off"
           value={searchString}
           placeholder="What are you looking for?"
@@ -47,7 +80,7 @@ export { results, searchString };
         <button
           aria-label="search button"
           type="submit"
-          class="inline-flex text-sm items-center justify-center gap-2 text-white bg-black px-2 sm:px-4 py-2 rounded-full"
+          class="inline-flex ml-2 text-sm items-center justify-center gap-2 text-white bg-black px-2 sm:px-4 py-2 rounded-full"
         >
           <Icon name="mdi:magnify" class="text-base" />
           <span class="hidden sm:inline">Search</span>
