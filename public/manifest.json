@@ -2,9 +2,6 @@
     "display_override": [
         "window-controls-overlay"
     ],
-    "protocol_handlers": [
-        {}
-    ],
     "shortcuts": [
         {
             "name": "Read Blogs",
@@ -21,14 +18,21 @@
     ],
     "screenshots": [
         {
-            "src": "/screenshots/home",
+            "src": "/screenshots/home.png",
             "sizes": "1220x764",
             "type": "image/png",
             "description": "Home Screen"
         },
         {
-            "src": "/screenshots/blogs",
-            "sizes": "496x947",
+            "src": "/screenshots/wide.png",
+            "sizes": "1920x1080",
+            "type": "image/png",
+            "form_factor": "wide",
+            "description": "Home Screen"
+        },
+        {
+            "src": "/screenshots/blogs.png",
+            "sizes": "498x947",
             "type": "image/png",
             "description": "Blogs Screen"
         }
