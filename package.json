@@ -40,7 +40,6 @@
   },
   "devDependencies": {
     "@iconify/svelte": "^4.0.2",
-    "svelte-typeahead": "^4.4.1",
     "tailwindcss-debug-screens": "^2.2.1"
   }
 }
