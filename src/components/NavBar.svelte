@@ -1,35 +1,9 @@
 <script lang="ts">
-  import type { BlogCollectionType } from "$/config";
   import Icon from "@iconify/svelte";
-  import { getCollection } from "astro:content";
-  import Fuse from "fuse.js";
   export let title: string;
-  let isSearchOpen: boolean = false;
+
   let isMenuOpen: boolean = false;
-  let searchResults: BlogCollectionType[] = [];
-  const toggleIsSearchOpen = () => {
-    isSearchOpen = !isSearchOpen;
-  };
-  let fuse: any;
-  const setUPFuSE = async () => {
-    const allBlogPosts = await getCollection("blogs");
-    const post: BlogCollectionType[] = allBlogPosts.map((post) => post.data);
-    fuse = new Fuse(post, {
-      keys: ["title"],
-    });
-  };
-
-  setUPFuSE();
-  const handleFormSubmission = (e: Event) => {
-    console.log("triggered");
-    const formData = new FormData(e.target as HTMLFormElement);
-    // console.log(formData.get("search"));
-    // window.location.href = `/blogs/${formData.get("search")}`;
-    const res = fuse.search(formData.get("search"));
-    searchResults = res.map((res: { item: any }) => res.item);
-    console.log(searchResults);
-  };
-
+  let isSearhPage: boolean = window.location.pathname === "/search";
   const toggleMenuOpen = () => {
     isMenuOpen = !isMenuOpen;
   };
@@ -59,56 +33,12 @@
 
     <a href="/" class="font-black z-[500] text-3xl uppercase">{title}</a>
 
-    <button on:click|preventDefault={toggleIsSearchOpen} class="z-[500]"
-      ><Icon icon="mdi:magnify" class="text-xl z-[500]" /></button
+    <a
+      href="/search"
+      class="{isSearhPage
+        ? 'invisible cursor-not-allowed select-none'
+        : ''} z-[500]"><Icon icon="mdi:magnify" class="text-xl z-[500]" /></a
     >
-  </div>
-
-  <!-- SearchBar -->
-  <div
-    class="{isSearchOpen
-      ? 'flex'
-      : 'hidden'} flex-col z-[900] gap-4 p-8 justify-center items-center w-full h-fit bg-black fixed top-0 left-0 right-0 transition-all duration-300 ease-in-out"
-  >
-    <form
-      class="w-full max-w-[900px] z-[900] inline-flex items-center outline border-2 border-white rounded-full px-8 py-3 justify-center"
-      on:submit|preventDefault={handleFormSubmission}
-    >
-      <div class="flex flex-col gap-2">
-        <input
-          type="text"
-          name="search"
-          placeholder="What are you looking for?"
-          class="grow bg-transparent outline-none ring-0 z-[900] text-white"
-        />
-      </div>
-      <button
-        type="submit"
-        class="inline-flex items-center justify-center z-[900] gap-2 text-white"
-      >
-        <Icon icon="mdi:magnify" class="text-xl" />
-        <span>Search</span>
-      </button>
-    </form>
-
-    <button
-      class="inline-flex items-center bg-white rounded-full px-4 py-2 text-black justify-center z-[900] gap-2"
-      on:click|preventDefault={toggleIsSearchOpen}
-    >
-      <Icon icon="mdi:close" class="text-xl" />
-      <span>Close</span>
-    </button>
-
-    {#if searchResults.length > 0}
-      {#each searchResults as result}
-        <a
-          href={`/blogs/${result.title}`}
-          class="inline-flex items-center bg-white rounded-full px-4 py-2 text-black justify-center z-[900] gap-2"
-        >
-          <span>{result.title}</span>
-        </a>
-      {/each}
-    {/if}
   </div>
 
   <!-- Nav Menu -->

@@ -1,33 +1,24 @@
 ---
 import Layout from "#/Layout.astro";
 import { Image } from "astro:assets";
-export const prerender = true;
 import { getCollection } from "astro:content";
-import { slugify } from "utils/utils";
 
-export async function getStaticPaths() {
-  const blogCollection = await getCollection("blogs");
 
-  const paths = blogCollection.map((post) => {
-    // const slug = slugify(post.data.title);
-    return {
-      params: { id: post.data.title },
-      props: { blogPost: post },
-    };
-  });
+const AllBlogs = await getCollection("blogs");
+const blogPost = AllBlogs.find((post) => {
+  return post.data.title === Astro.params.id;
+});
 
-  return paths;
-}
 
-const { blogPost } = Astro.props;
-const { Content } = await blogPost.render();
+const render = await blogPost?.render();
 ---
 
-<Layout title={blogPost.data.title}>
+<Layout title={blogPost?.data.title??'Not Exist'}>
   <div
     class="w-full mx-auto max-w-[900px] px-8 items-center grow pt-6 flex flex-col h-fit"
   >
-    <Image
+  <!-- if Found -->
+    {blogPost && <Image
       src={blogPost.data.image}
       alt={blogPost.data.title}
       inferSize
@@ -37,7 +28,17 @@ const { Content } = await blogPost.render();
     <article
       class="w-full prose-headings:my-1 my-2 prose-ul:my-1 flex flex-col max-w-[780px] prose-a:text-blue-600 prose-a:decoration-dotted prose-a:underline-offset-8 prose"
     >
-      <Content />
-    </article>
+     {render?.Content && <render.Content />} 
+    </article>}
+    <!-- if Not Found -->
+    {blogPost===undefined && 
+    <div class="flex items-center justify-center flex-col w-full">
+      <h1 class="text-9xl font-black">404</h1>
+      <h1 class="text-2xl underline underline-offset-8 font-semibold mx-4 my-2">
+       Not Found
+      </h1>
+      <li class="text-base font-extralight mx-4 my-2 list-disc list-inside"> Your requested blog "{Astro.params.id}" does not exist</li>
+    </div>}
+
   </div>
 </Layout>

@@ -1,0 +1,87 @@
+---
+import type { BlogCollectionType } from "$/config";
+import Layout from "#/Layout.astro";
+import PostCard from "@/PostCard.astro";
+import Fuse from "fuse.js";
+import { getCollection } from "astro:content";
+import { Icon } from "astro-icon/components";
+
+const { url } = Astro.request;
+const urlObj = new URL(url);
+const searchString = urlObj.searchParams.get("q");
+
+const allBlogPosts = await getCollection("blogs");
+const blogs: BlogCollectionType[] = allBlogPosts.map((post) => post.data);
+let fuse: any;
+const setUp_Fuse = async () => {
+  fuse = new Fuse(blogs, {
+    keys: ["title", "description"],
+    minMatchCharLength: 3,
+    threshold: 0.25,
+  });
+};
+setUp_Fuse();
+const res = fuse.search(searchString ?? "");
+const results = res.map((res: { item: any }) => res.item);
+export { results, searchString };
+---
+
+<Layout title={"Search Results - WC"}>
+  <main class="h-full max-w-[900px] mx-auto grow px-10 w-full flex flex-col">
+    <div
+      class="flex flex-col gap-4 p-8 justify-center items-center w-full h-fit"
+    >
+      <form
+        class="w-full max-w-[900px] z-[900] inline-flex items-center border rounded-full pl-8 pr-1 py-1 justify-center"
+      >
+        <input
+          id="search"
+          type="text"
+          name="q"
+          autocomplete="off"
+          value={searchString}
+          placeholder="What are you looking for?"
+          class="grow bg-transparent outline-none ring-0"
+        />
+
+        <button
+          type="submit"
+          class="inline-flex text-sm items-center justify-center z-[900] gap-2 text-white bg-black px-2 sm:px-4 py-2 rounded-full"
+        >
+          <Icon name="mdi:magnify" class="text-base" />
+          <span class="hidden sm:inline">Search</span>
+        </button>
+      </form>
+    </div>
+
+    <!-- Search Results are shown here -->
+
+    {
+      searchString && searchString.length > 0 && (
+        <div class="flex flex-col w-full sm:px-12 px- pb-8 max-w-[900px] mx-auto gap-4">
+          <h1 class="text-2xl underline underline-offset-8 font-semibold mx-4 my-2">
+            Results for {searchString}
+          </h1>
+          {results.length > 0 &&
+            results.map(
+              (blog: { title: string; description: string; image: string }) => {
+                return (
+                  <PostCard
+                    title={blog.title}
+                    description={blog.description}
+                    imgLink={blog.image}
+                    url={"/blogs/" + blog.title}
+                  />
+                );
+              }
+            )}
+          {results.length === 0 && (
+            <p class="text-base font-extralight mx-4 my-2">
+              Sorry! No results found
+            </p>
+          )}
+        </div>
+      )
+    }
+  </main>
+</Layout>
