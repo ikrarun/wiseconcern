@@ -37,7 +37,7 @@
             "description": "Home Screen"
         }
     ],
-    "background_color": "#1d4ed8",
+    "background_color": "#fbbf24",
     "description": "The only app which will elevate your life.",
     "dir": "ltr",
     "display": "standalone",
