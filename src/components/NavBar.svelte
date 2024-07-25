@@ -23,7 +23,11 @@
   <div
     class="inline-flex z-[500] justify-between max-w-[900px] px-4 items-center w-full py-2"
   >
-    <button class="z-[500]" on:click|preventDefault={toggleMenuOpen}>
+    <button
+      aria-label="menu"
+      class="z-[500]"
+      on:click|preventDefault={toggleMenuOpen}
+    >
       {#if isMenuOpen}
         <Icon icon="mdi:close" class="text-xl" />
       {:else}
@@ -31,9 +35,14 @@
       {/if}</button
     >
 
-    <a href="/" class="font-black z-[500] text-3xl uppercase">{title}</a>
+    <a
+      href="/"
+      aria-label="Go to Home"
+      class="font-black z-[500] text-3xl uppercase">{title}</a
+    >
 
     <a
+      aria-label="Open Search Page"
       href="/search"
       class="{isSearhPage
         ? 'invisible cursor-not-allowed select-none'
@@ -50,11 +59,11 @@
     <div
       class="flex flex-col w-full max-w-[380px] mx-auto justify-center items-center"
     >
-      <a href="/" class="text-xl">Home</a>
+      <a aria-label="Go to Home" href="/" class="text-xl">Home</a>
       <span class="rounded-full my-2 bg-black/30 w-2/3 h-0.5" />
-      <a href="/blogs" class="text-xl">Blogs</a>
+      <a aria-label="Go to Blogs" href="/blogs" class="text-xl">Blogs</a>
       <span class="rounded-full my-2 bg-black/30 w-2/3 h-0.5" />
-      <a href="/about" class="text-xl">About</a>
+      <a aria-label="Go to About" href="/about" class="text-xl">About</a>
       <span class="rounded-full my-2 bg-black/30 w-2/3 h-0.5" />
     </div>
   </div>
