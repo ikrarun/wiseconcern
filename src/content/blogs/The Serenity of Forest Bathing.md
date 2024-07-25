@@ -33,4 +33,4 @@ Listen to the symphony of nature as birds sing, leaves rustle, and streams babbl
 Express gratitude for the beauty and abundance of the natural world, recognizing the interconnectedness of all living beings and the importance of preserving our precious ecosystems.
 Immerse yourself in the serenity of forest bathing and let the healing power of nature restore balance and harmony to your mind, body, and spirit.
 
-#### [Follow us on WhatsApp](https://whatsapp.com/channel/0029Vafjp071SWt58vG98G45)
+### [Follow us on WhatsApp](https://whatsapp.com/channel/0029Vafjp071SWt58vG98G45)
