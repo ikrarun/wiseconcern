@@ -1,53 +1,34 @@
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/6.1.5/workbox-sw.js');
 
-const { precacheAndRoute, cleanupOutdatedCaches } = workbox;
+if (workbox) {
+    console.log(`Yay! Workbox is loaded 🎉`);
+    workbox.routing.registerRoute(
+        /\.(?:png|gif|jpg|jpeg|svg)$/,
+        new workbox.strategies.CacheFirst({
+            cacheName: 'images',
+            plugins: [
+                new workbox.expiration.ExpirationPlugin({
+                    maxAgeSeconds: 4 * 60 * 60,
+                }),
+            ],
+        })
+    );
 
-precacheAndRoute([]);
-
-cleanupOutdatedCaches();
-
-workbox.routing.registerRoute(
-    ({ url }) => url.origin === 'https://fonts.googleapis.com',
-    new workbox.strategies.StaleWhileRevalidate({
-        cacheName: 'google-fonts-cache',
-        plugins: [
-            {
-                cacheWillUpdate: async ({ request, response }) => {
-                    const cache = await caches.open('google-fonts-cache');
-                    const cachedResponse = await cache.match(request.url);
-                    if (cachedResponse) {
-                        const currentTime = new Date().getTime();
-                        const lastCachedTime = new Date(cachedResponse.headers.get('date')).getTime();
-                        if (currentTime - lastCachedTime > 4 * 60 * 60 * 1000) {
-                            return fetch(request);
-                        }
-                    }
-                    return response;
-                }
-            }
-        ]
-    })
-);
-
-workbox.routing.registerRoute(
-    ({ request }) => request.destination === 'image',
-    new workbox.strategies.CacheFirst({
-        cacheName: 'images-cache',
-        plugins: [
-            {
-                cacheWillUpdate: async ({ request, response }) => {
-                    const cache = await caches.open('images-cache');
-                    const cachedResponse = await cache.match(request.url);
-                    if (cachedResponse) {
-                        const currentTime = new Date().getTime();
-                        const lastCachedTime = new Date(cachedResponse.headers.get('date')).getTime();
-                        if (currentTime - lastCachedTime > 4 * 60 * 60 * 1000) {
-                            return fetch(request);
-                        }
-                    }
-                    return response;
-                }
-            }
-        ]
-    })
-);
+    workbox.routing.registerRoute(
+        new RegExp('https://fonts.(?:googleapis|gstatic).com/(.*)'),
+        new workbox.strategies.CacheFirst({
+            cacheName: 'google-fonts',
+            plugins: [
+                new workbox.cacheableResponse.CacheableResponsePlugin({
+                    statuses: [0, 200],
+                }),
+                new workbox.expiration.ExpirationPlugin({
+                    maxAgeSeconds: 60 * 60 * 24 * 365,
+                    maxEntries: 30,
+                }),
+            ],
+        })
+    );
+} else {
+    console.log(`Boo! Workbox didn't load 😬`);
+}
