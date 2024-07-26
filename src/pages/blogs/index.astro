@@ -20,6 +20,7 @@ const post: BlogCollectionType[] = allBlogPosts.map((post) => post.data);
           return (
             <PostCard
               title={blog.title}
+              date={blog.date}
               description={blog.description}
               imgLink={blog.image}
               url={"/blogs/" + blog.title}

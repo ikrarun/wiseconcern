@@ -2,6 +2,9 @@
 title: The Art of Mindful Journaling
 image: https://images.unsplash.com/photo-1456324504439-367cee3b3c32?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 description: Explore the transformative practice of mindful journaling for self-reflection and growth.
+tags: [Fetured, Nature]
+date: 22-10-2024
+author: Arun
 ---
 
 # The Art of Mindful Journaling
@@ -30,6 +33,5 @@ Embrace the creative aspect of journaling by incorporating art, poetry, or doodl
 
 ## Healing and Growth
 
-Use your journal as a tool for healing past wounds, processing emotions, and fostering personal growth and resilience in the face of challenges.
-
+Use your journal as a tool for healing past wounds, processing emotions, and fostering personal growth and resilience in the face of challenges.  
 Engage in the art of mindful journaling as a sacred practice of self-discovery, empowerment, and transformation.

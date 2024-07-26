@@ -6,24 +6,33 @@ interface Props {
   title: string;
   description: string;
   url: string;
+  date: Date;
 }
-const { imgLink, title, description, url } = Astro.props;
+const { imgLink, title, description, url, date } = Astro.props;
 ---
 
 <div
   class="flex flex-col h-fit sm:h-80 sm:flex-row sm:even:flex-row-reverse w-full border-2 rounded-xl overflow-clip mx-auto"
 >
   <div class="sm:w-2/5 w-full h-56 sm:h-full object-cover grow flex">
-    <Image src={imgLink} alt={title} class="object-cover flex w-full h-full grow" inferSize loading="eager" />
+    <Image
+      src={imgLink}
+      alt={title}
+      class="object-cover flex w-full h-full grow"
+      inferSize
+      loading="eager"
+    />
   </div>
   <div class="flex flex-col h-full grow sm:w-3/5 gap-4 p-4 sm:p-8">
     <h1 class="text-2xl sm:text-3xl font-bold">{title}</h1>
+    <p>{date.toLocaleDateString()}</p>
     <span class="grow">
       <p class="text-base sm:text-lg font-normal line-clamp-2">
         {description}
       </p>
     </span>
-    <a aria-label="read more"
+    <a
+      aria-label="read more"
       href={url}
       class="text-white inline-flex items-center gap-3 hover:scale-110 transition-all duration-500 bg-black w-fit rounded-full px-4 py-2 text-xs sm:text-sm justify-self-end"
       >Read Now<Icon name="mdi:arrow-right" /></a

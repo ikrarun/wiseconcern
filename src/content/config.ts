@@ -1,5 +1,11 @@
 // 1. Import utilities from `astro:content`
+import { date } from "astro/zod";
 import { z, defineCollection } from "astro:content";
+
+const dateSchema = z.string().transform((val) => {
+  const [day, month, year] = val.split("-");
+  return new Date(`${year}-${month}-${day}`);
+});
 
 // 2. Define your collection(s)
 const blogCollection = defineCollection({
@@ -8,6 +14,9 @@ const blogCollection = defineCollection({
     title: z.string(),
     description: z.string(),
     image: z.string().url(),
+    date: dateSchema,
+    tags: z.array(z.string()).optional(),
+    author: z.string(),
   }),
 });
 
@@ -22,4 +31,7 @@ export type BlogCollectionType = {
   title: string;
   description: string;
   image: string;
+  date: Date;
+  author: string;
+  tags?: string[];
 };

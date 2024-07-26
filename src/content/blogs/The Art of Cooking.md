@@ -2,6 +2,9 @@
 title: The Art of Cooking
 image: https://images.unsplash.com/photo-1507048331197-7d4ac70811cf?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 description: Discover the joy of creating delicious dishes in your kitchen.
+tags: [Fetured, Nature]
+date: 22-10-2024
+author: Arun
 ---
 
 # The Art of Cooking

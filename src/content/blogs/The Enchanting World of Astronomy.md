@@ -2,6 +2,9 @@
 title: The Enchanting World of Astronomy
 image: https://images.unsplash.com/photo-1511798616182-aab3698ac53e?q=80&w=1952&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 description: Embark on a cosmic journey through the wonders of the universe.
+tags: [Fetured, Nature]
+date: 22-10-2024
+author: Arun
 ---
 
 # The Enchanting World of Astronomy

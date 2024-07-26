@@ -2,6 +2,9 @@
 title: Mindfulness Meditation
 image: https://images.unsplash.com/photo-1499728603263-13726abce5fd?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 description: Explore the practice of mindfulness meditation for inner peace and clarity.
+tags: [Fetured, Nature]
+date: 22-10-2024
+author: Arun
 ---
 
 # Mindfulness Meditation

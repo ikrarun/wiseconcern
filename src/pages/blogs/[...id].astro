@@ -15,7 +15,7 @@ const render = await blogPost?.render();
 
 <Layout title={blogPost?.data.title??'Not Exist'}>
   <div
-    class="w-full mx-auto max-w-[900px] px-8 items-center grow  -mt-2  flex flex-col h-fit"
+    class="w-full pointer-events-none select-none mx-auto max-w-[780px] px-8 items-center grow  -mt-2  flex flex-col h-fit"
   >
   <!-- if Found -->
     {blogPost && <Image
@@ -23,10 +23,11 @@ const render = await blogPost?.render();
       alt={blogPost.data.title}
       inferSize
       loading={"eager"}
-      class="object-cover rounded-t-xl h-52 w-full max-w-[780px] aspect-auto"
+      class="object-cover  rounded-t-xl h-52 w-full  aspect-auto"
     />
+    <p class="text-start self-start mt-4"> By {blogPost.data.author} on {blogPost.data.date.toLocaleDateString()}</p>
     <article
-      class="w-full prose-headings:my-1 my-2 prose-ul:my-1 flex flex-col max-w-[780px] prose-a:text-blue-600 prose-a:decoration-dotted prose-a:underline-offset-8 prose pb-12"
+      class="min-w-full  prose-headings:my-1 my-2 prose-ul:my-1 flex flex-col prose-a:text-blue-600 prose-a:decoration-dotted prose-a:underline-offset-8 prose pb-12"
     >
      {render?.Content && <render.Content />} 
     </article>}
